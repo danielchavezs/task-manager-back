@@ -8,6 +8,13 @@ connectDb()
     server.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
     });
+
+    process.on("SIGINT", async () => {
+      console.log("Closing server...");
+      await mongoose.connection.close();
+      console.log("Database connection closed.");
+      process.exit(0);
+    });
   })
   .catch((error) => {
     console.error("Failed to connect to the database:", error);
