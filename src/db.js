@@ -5,6 +5,7 @@ const Task = require("./models/Task");
 
 const dbStringConn = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.796kv.mongodb.net/task-manager?retryWrites=true&w=majority&appName=Cluster0`
 
+// Conexión a la base de datos por medio de Mongoose
 const connectDb = async () => {
     try {
       await mongoose.connect(dbStringConn);
@@ -18,6 +19,6 @@ const connectDb = async () => {
 module.exports = { 
     connectDb, 
     models: {
-        Task,
+      Task,
     }
 };

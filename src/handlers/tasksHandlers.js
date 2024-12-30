@@ -1,5 +1,8 @@
 const { createTask, getTasks, getTaskById, updateTask, deleteTask, getFiltered } = require("../controllers/tasksControllers");
 
+// Handlers individuales para cada uno de los controladores.Algunos reciben argumentos por medio
+// de query, el body o params. Usp del try - catch para la generación de las respuestas y presentación de errores.
+
 const postTaskHandler = async (req, res) => {
     const { title, description, completed } = req.body;
     try {

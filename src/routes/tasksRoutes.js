@@ -3,6 +3,7 @@ const { postTaskHandler, getTasksHandler, getTasksByIdHandler, updateTaskHandler
 
 const tasksRouter = Router();
 
+// Definición de cada uno de los endpoints, sus métodos HTTP y handlers a ejecutar en cada caso.
 tasksRouter.post("/", postTaskHandler);
 // tasksRouter.get("/", getTasksHandler);
 tasksRouter.get("/", getFilteredHandler);

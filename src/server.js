@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const router = require("./routes");
 
+// Configuración para ser empleada en la ejecución del servidor con express.
 const server = express();
 
 server.use(morgan("dev"));
