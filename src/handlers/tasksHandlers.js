@@ -1,4 +1,4 @@
-const { createTask, getTasks, getTaskById, updateTask, deleteTask } = require("../controllers/tasksControllers");
+const { createTask, getTasks, getTaskById, updateTask, deleteTask, getFiltered } = require("../controllers/tasksControllers");
 
 const postTaskHandler = async (req, res) => {
     const { title, description, completed } = req.body;
@@ -14,6 +14,16 @@ const postTaskHandler = async (req, res) => {
 const getTasksHandler = async (req, res) => {
   try {
     const response = await getTasks();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
+
+const getFilteredHandler = async (req, res) => {
+  const { completed } = req.query;
+  try {
+    const response = await getFiltered(completed);
     res.status(200).json(response);
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -57,4 +67,6 @@ const deleteTaskHandler = async (req, res) => {
 };
 
 
-module.exports = { postTaskHandler, getTasksHandler, getTasksByIdHandler, updateTaskHandler, deleteTaskHandler };
+module.exports = { postTaskHandler, 
+  getTasksHandler, 
+  getFilteredHandler, getTasksByIdHandler, updateTaskHandler, deleteTaskHandler };

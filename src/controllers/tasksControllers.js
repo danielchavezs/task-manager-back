@@ -18,13 +18,22 @@ async function getTasks () {
     return tasks;
 };
 
+async function getFiltered(completed) {
+    const filter = completed !== undefined 
+        ? { completed: completed === 'true' } // Convierte la query string a booleano
+        : {};
+
+    const tasks = await models.Task.find(filter);
+    return tasks;
+};
+
+
 async function getTaskById (id) {
     const task = await models.Task.findById(id);
     if (!task){
         throw new Error ("No se encontró ninguna tarea con este ID.");
     } else { return task }; 
 };
-
 
 async function updateTask (id, title, description, completed) {
     const task = await models.Task.findById(id);
@@ -66,4 +75,4 @@ async function deleteTask (id) {
     };
 };
 
-module.exports = { getTasks, createTask, getTaskById, updateTask, deleteTask }
+module.exports = { getTasks, getFiltered, createTask, getTaskById, updateTask, deleteTask }
