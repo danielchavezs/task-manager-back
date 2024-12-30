@@ -38,8 +38,8 @@ async function updateTask (id, title, description, completed) {
         if (description && description.length > 0){
             task.description = description;
         }
-        if (completed){
-            task.completed = completed
+        if (completed !== null && (completed === false || completed === true)){
+            task.completed = completed;
         }
         await task.save();
     }
