@@ -8,6 +8,6 @@ const router = Router();
 router.use(morgan("dev"));
 router.use(cors());
 
-router.use("/tasks", tasksRouter);
+router.use("/api/tasks", tasksRouter);
 
 module.exports = router;

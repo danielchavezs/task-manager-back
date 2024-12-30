@@ -1,9 +1,12 @@
 const { models } = require("../db");
 
 async function createTask (title, description, completed) {
+    if (!title) {
+        throw new Error ("El título de la tarea es un campo obligatorio.")
+    };
     const newTask = await models.Task.create({
-        title: title? title: "Título de la tarea.",
-        description: description? description : "Descripción de la tarea",
+        title,
+        description: description? description : "Descripción de la tarea pendiente de actualizar",
         completed: completed? completed : false,
     });
 
@@ -17,11 +20,9 @@ async function getTasks () {
 
 async function getTaskById (id) {
     const task = await models.Task.findById(id);
-    if (task){
-        return task;
-    } else { 
+    if (!task){
         throw new Error ("No se encontró ninguna tarea con este ID.");
-    } 
+    } else { return task }; 
 };
 
 
@@ -59,7 +60,10 @@ async function deleteTask (id) {
         }
     });
     
-    console.log("Tarea eliminada con éxito en la base de datos."); 
+    console.log("Tarea eliminada con éxito en la base de datos.");
+    return {
+        message: "Tarea eliminada con éxito en la base de datos."
+    };
 };
 
 module.exports = { getTasks, createTask, getTaskById, updateTask, deleteTask }
