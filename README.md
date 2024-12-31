@@ -32,19 +32,26 @@ Este repositorio contiene el backend para la aplicación **Task Manager**, una h
 4. Crea un archivo `.env` en la raíz del proyecto y añade las siguientes variables de entorno:
 
     ```env
-    DB_USER=<TU_USUARIO_DE_MONGODB>
-    DB_PASSWORD=<TU_CONTRASEÑA_DE_MONGODB>
+    DB_URL=<TU_ENLACE_DE_MONGODB>
     ```
 
-   Asegúrate de reemplazar los valores de las variables con tus credenciales de conexión de MongoDB.
+   Asegúrate de reemplazar el valor de la variable con tus credenciales de conexión de MongoDB.
 
-5. Inicializa el servidor:
+5. Habilitar conexión de base de datos:
+
+- Dirigirse al archivo `db.js`.
+- Comentar la línea de código que define la variable **dbStringConn** y que usa las variables de entorno *DB_USER* y *DB_PASSWORD*.
+- Remueve el comentario de la línea de código inferior que define la variable **dbStringConn** y que solamente usa la variable de entorno *DB_URL*.
+- Guarda el archivo para actualizar los cambios.
+
+
+6. Inicializa el servidor:
 
     ```bash
     npm run server
     ```
 
-6. El servidor estará corriendo en `http://localhost:3001`.
+7. El servidor estará corriendo en `http://localhost:3001`.
 
 ## Endpoints principales
 
